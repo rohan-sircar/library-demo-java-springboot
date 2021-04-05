@@ -1,34 +1,27 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.entity.BooksStore;
-import com.example.demo.repository.AuthorRepository;
-import com.example.demo.repository.BookExpiryRepo;
-import com.example.demo.repository.BooksRepository;
-import com.example.demo.repository.BooksStoreRepo;
-import com.example.demo.repository.CheckoutsRepo;
-import com.example.demo.repository.UsersRepo;
+import com.example.demo.model.CreateBookDTO;
+import com.example.demo.model.ExtendTimeDTO;
 
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Service
-public class LibraryService {
-    private final BooksRepository booksRepository;
-    private final AuthorRepository authorRepository;
-    private final BookExpiryRepo bookExpiryRepo;
-    private final CheckoutsRepo checkoutsRepo;
-    private final UsersRepo usersRepo;
-    private final BooksStoreRepo booksStoreRepo;
+public interface LibraryService {
+    public List<BooksStore> getAllBooks();
 
-    // void blah() {
-    // System.out.println("blah");
-    // }
+    public Optional<BooksStore> getBookByParam(BookSearchMode mode, String value);
 
-    public List<BooksStore> getAllBooks() {
-        return booksStoreRepo.findAll();
-    }
+    public Optional<Integer> checkoutBook(int bookId, int userId);
+
+    public void returnBook(int checkoutId);
+
+    public BooksStore createBook(CreateBookDTO dto);
+
+    public void extendReturnTime(ExtendTimeDTO dto);
+
+    public void discontinueBook(int bookId);
 }
