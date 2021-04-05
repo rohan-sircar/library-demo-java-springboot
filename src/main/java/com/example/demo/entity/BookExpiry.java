@@ -14,12 +14,12 @@ import lombok.Data;
 public class BookExpiry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int bookExpiryId;
+    private int bookExpiryId;
     // @OneToMany(mappedBy = "book_id")
     // List<Book> book;
     @OneToOne
     @JoinColumn(name = "book_id")
-    Book book;
-    boolean discontinued;
+    private Book book;
+    private boolean discontinued;
 
 }
